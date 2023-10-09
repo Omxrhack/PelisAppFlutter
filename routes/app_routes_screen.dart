@@ -6,9 +6,15 @@ class AppRoute {
   static const inicialRoute = 'home';
   static final menuOptions = <MenuOptions>{
     MenuOptions(
-      route: 'listView',
-      title: 'ListViewScreen',
+      route: 'HomeScreen',
+      title: 'HomeScreen',
       screen: const HomeScreen(),
+      icon: Icons.list,
+    ),
+    MenuOptions(
+      route: 'DetailScreen',
+      title: 'DetailsScreen',
+      screen: const DetailsScreen(),
       icon: Icons.list,
     ),
   };

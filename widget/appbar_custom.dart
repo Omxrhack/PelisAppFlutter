@@ -22,6 +22,53 @@ class AppBarCustom extends StatelessWidget {
           ),
         ],
       ),
+      actions: const [
+        IconsState(),
+      ],
     );
   }
 }
+
+class IconsState extends StatefulWidget {
+  const IconsState({
+    super.key,
+  });
+
+  @override
+  State<IconsState> createState() => _IconsStateState();
+}
+
+class _IconsStateState extends State<IconsState> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.search),
+        ),
+        IconButton(
+          onPressed: () {
+            //Cambiartema();
+            const Icon(Icons.dangerous);
+            setState(() {});
+          },
+          icon: const Icon(Icons.nightlight_sharp),
+        ),
+      ],
+    );
+  }
+}
+
+// class Cambiartema {
+//   void Cambiartema() {
+//     if (TemaApp.darkTheme == ThemeData.dark()) {
+//         TemaApp.darkTheme == ThemeData.light();
+//       } else {
+//         TemaApp.darkTheme == ThemeData.dark();
+//       }  
+     
+//   } 
+    
+  
+// }

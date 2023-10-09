@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:pelisapp/provaider/movies_provider.dart';
 import 'package:pelisapp/routes/app_routes_screen.dart';
 import 'package:pelisapp/theme/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppState());
+}
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => MoviesProvaiders(),
+          lazy: false,
+        ),
+      ],
+      child: const MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

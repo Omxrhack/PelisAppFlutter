@@ -20,6 +20,8 @@ class TemaApp {
         fontSize: 35,
       ),
     ),
+    textTheme:
+        const TextTheme(displaySmall: TextStyle(color: TemaApp.colorTexto)),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: colorPrincipal,
@@ -64,6 +66,8 @@ class TemaApp {
         fontSize: 35,
       ),
     ),
+    textTheme: const TextTheme(
+        displaySmall: TextStyle(color: TemaApp.colorTextoContrario)),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: colorPrincipal,
