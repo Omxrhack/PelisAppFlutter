@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelisapp/theme/theme.dart';
+import 'package:pelisapp/models/movie.dart';
+
 import 'package:pelisapp/widget/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -7,8 +8,8 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-Movie';
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -19,10 +20,10 @@ class DetailsScreen extends StatelessWidget {
                 _PostedAndTitle(),
                 const SizedBox(height: 20),
                 _OverViev(),
-                _OverViev(),
-                _OverViev(),
                 const SizedBox(height: 20),
-                CastingCards(),
+                CastingCards(
+                  movie: movie,
+                ),
               ],
             ),
           ),
@@ -35,6 +36,7 @@ class DetailsScreen extends StatelessWidget {
 class _CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return SliverAppBar(
       expandedHeight: 300,
       floating: false,
@@ -45,13 +47,14 @@ class _CustomAppbar extends StatelessWidget {
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           color: Colors.black45,
-          child: const Text(
-            'Movie Tittle',
+          child: Text(
+            movie.title,
+            textAlign: TextAlign.center,
             style: TextStyle(fontSize: 33, fontWeight: FontWeight.w800),
           ),
         ),
-        background: const FadeInImage(
-          image: NetworkImage('https://via.placeholder.com/500x300'),
+        background: FadeInImage(
+          image: NetworkImage(movie.fullBackdropPath),
           placeholder: AssetImage('assets/loading.gif'),
           fit: BoxFit.cover,
         ),
@@ -63,6 +66,7 @@ class _CustomAppbar extends StatelessWidget {
 class _PostedAndTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Container(
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,30 +74,50 @@ class _PostedAndTitle extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
-            child: const FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/200x300'),
+            child: FadeInImage(
+              placeholder: const AssetImage('assets/no-image.jpg'),
+              image: NetworkImage(movie.fullPosterImg),
               height: 150,
             ),
           ),
           const SizedBox(width: 20),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Title',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 150),
+                child: Text(
+                  movie.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).textTheme.titleLarge
+                      : Theme.of(context).textTheme.titleLarge,
+                ),
               ),
-              Text(
-                'Title original main',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              const SizedBox(height: 10),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 150),
+                child: Text(
+                  movie.originalTitle,
+                  style: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).textTheme.titleSmall
+                      : Theme.of(context).textTheme.titleSmall,
+                ),
               ),
+              const SizedBox(height: 10),
               Row(
                 children: [
-                  Icon(Icons.star_border_outlined,
+                  const Icon(Icons.star_border_outlined,
                       size: 15, color: Colors.amber),
-                  SizedBox(width: 5),
-                  Text('Point')
+                  const SizedBox(width: 5),
+                  Text(
+                    'Point',
+                    style: Theme.of(context).brightness == Brightness.dark
+                        ? Theme.of(context).textTheme.titleSmall
+                        : Theme.of(context).textTheme.titleSmall,
+                  )
                 ],
               ),
             ],
@@ -107,15 +131,16 @@ class _PostedAndTitle extends StatelessWidget {
 class _OverViev extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: const Text(
-          'Et ad officia velit excepteur elit ut sunt sint in in amet sint magna irure. Non dolore anim cillum adipisicing consequat eiusmod adipisicing deserunt. Nostrud id elit sunt nisi. Est et nulla fugiat in cillum cillum id ad enim fugiat ipsum laboris pariatur cupidatat. Mollit nostrud sit sunt duis consequat dolor velit esse do eu culpa mollit.',
-          textAlign: TextAlign.justify,
-          style: TextStyle(
-            fontSize: 20,
-            color: TemaApp.colorTextoContrario,
-          )),
+      child: Text(
+        movie.overview,
+        textAlign: TextAlign.justify,
+        style: Theme.of(context).brightness == Brightness.dark
+            ? Theme.of(context).textTheme.titleMedium
+            : Theme.of(context).textTheme.titleMedium,
+      ),
     );
   }
 }

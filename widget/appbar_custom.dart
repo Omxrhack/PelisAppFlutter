@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pelisapp/search/serach_delagate.dart';
+import 'package:pelisapp/theme/theme.dart';
+import 'package:pelisapp/theme/themeActions.dart';
+import 'package:provider/provider.dart';
 
-class AppBarCustom extends StatelessWidget {
+class AppBarCustom extends StatefulWidget {
+  final ThemeChanger theme;
+
   const AppBarCustom({
+    required this.theme,
     super.key,
   });
 
+  @override
+  State<AppBarCustom> createState() => _AppBarCustomState();
+}
+
+class _AppBarCustomState extends State<AppBarCustom> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -22,7 +34,7 @@ class AppBarCustom extends StatelessWidget {
           ),
         ],
       ),
-      actions: const [
+      actions: [
         IconsState(),
       ],
     );
@@ -41,19 +53,34 @@ class IconsState extends StatefulWidget {
 class _IconsStateState extends State<IconsState> {
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
     return Row(
       children: [
         IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
+          onPressed: () {
+            showSearch(context: context, delegate: MovieSearchDelagate());
+          },
+          icon: theme.getTheme() == TemaApp.darkTheme
+              ? const Icon(Icons.search)
+              : const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
         ),
         IconButton(
           onPressed: () {
             //Cambiartema();
-            const Icon(Icons.dangerous);
-            setState(() {});
+
+            theme.getTheme() == TemaApp.darkTheme
+                ? theme.setTheme(TemaApp.ligthTheme)
+                : theme.setTheme(TemaApp.darkTheme);
           },
-          icon: const Icon(Icons.nightlight_sharp),
+          icon: theme.getTheme() == TemaApp.darkTheme
+              ? const Icon(Icons.brightness_4)
+              : const Icon(
+                  Icons.brightness_7,
+                  color: Colors.black,
+                ),
         ),
       ],
     );

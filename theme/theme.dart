@@ -9,7 +9,7 @@ class TemaApp {
   static const Color colorTextoSecundario = Colors.red;
 
   static final ThemeData ligthTheme = ThemeData.light().copyWith(
-    primaryColor: colorPrincipal,
+    primaryColor: colorSecundarioDark,
     scaffoldBackgroundColor: colorPrincipal,
     appBarTheme: const AppBarTheme(
       color: colorPrincipal,
@@ -20,28 +20,45 @@ class TemaApp {
         fontSize: 35,
       ),
     ),
-    textTheme:
-        const TextTheme(displaySmall: TextStyle(color: TemaApp.colorTexto)),
+    iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(iconColor: MaterialStatePropertyAll(colorTexto))),
+    iconTheme: const IconThemeData(color: colorTexto),
+    textTheme: const TextTheme(
+      labelSmall: TextStyle(color: TemaApp.colorTexto),
+      displaySmall: TextStyle(color: TemaApp.colorTexto),
+      bodyLarge: TextStyle(color: TemaApp.colorTexto),
+      titleLarge: TextStyle(color: TemaApp.colorTexto),
+      titleMedium: TextStyle(color: TemaApp.colorTexto),
+      titleSmall: TextStyle(color: TemaApp.colorTexto),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: colorTexto,
+      selectionColor: colorTexto,
+      selectionHandleColor: colorTexto,
+    ),
+    primaryTextTheme: const TextTheme(
+      titleLarge: TextStyle(color: colorTextoContrario),
+    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: colorPrincipal,
+        foregroundColor: colorTexto,
       ),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: colorPrincipal,
+      backgroundColor: colorTexto,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          backgroundColor: colorPrincipal,
+          backgroundColor: colorTexto,
           shape: const StadiumBorder(),
           elevation: 0),
     ),
     inputDecorationTheme: const InputDecorationTheme(
         floatingLabelStyle: TextStyle(
-          color: colorPrincipal,
+          color: colorTexto,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: colorPrincipal),
+          borderSide: BorderSide(color: colorTexto),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             topRight: Radius.circular(20),

@@ -37,8 +37,8 @@ class CardWidget extends StatelessWidget {
           // ignore: avoid_print
           print(movie.fullPosterImg);
           return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'DetailScreen',
-                arguments: 'movie-id'),
+            onTap: () =>
+                Navigator.pushNamed(context, 'DetailScreen', arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
