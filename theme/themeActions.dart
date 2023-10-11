@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:pelisapp/theme/theme.dart';
 
 class ThemeChanger with ChangeNotifier {
   ThemeData _themeData;

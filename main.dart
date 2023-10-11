@@ -21,7 +21,7 @@ class AppStateState extends State<AppState> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ThemeChanger(TemaApp.darkTheme),
-      child: ChangerApp(),
+      child: const ChangerApp(),
     );
   }
 }
@@ -41,7 +41,7 @@ class _ChangerAppState extends State<ChangerApp> {
     return ChangeNotifierProvider(
       create: (_) => MoviesProvaiders(),
       lazy: false,
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }

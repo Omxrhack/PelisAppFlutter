@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pelisapp/models/movie.dart';
-import 'package:pelisapp/theme/theme.dart';
 
 class MovieSliderWidget extends StatefulWidget {
   final List<Movie> movies;
@@ -33,7 +32,7 @@ class _MovieSliderWidgetState extends State<MovieSliderWidget> {
       height: 300,
       child: Column(
         children: [
-          if (this.widget.title != null)
+          if (widget.title != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(

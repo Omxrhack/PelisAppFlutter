@@ -86,16 +86,3 @@ class _IconsStateState extends State<IconsState> {
     );
   }
 }
-
-// class Cambiartema {
-//   void Cambiartema() {
-//     if (TemaApp.darkTheme == ThemeData.dark()) {
-//         TemaApp.darkTheme == ThemeData.light();
-//       } else {
-//         TemaApp.darkTheme == ThemeData.dark();
-//       }  
-     
-//   } 
-    
-  
-// }
