@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:pelisapp/search/serach_delagate.dart';
 import 'package:pelisapp/theme/theme.dart';
 import 'package:pelisapp/theme/themeActions.dart';
@@ -34,7 +34,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
           ),
         ],
       ),
-      actions: [
+      actions: const [
         IconsState(),
       ],
     );
